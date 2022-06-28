@@ -3,13 +3,19 @@
 <h3> It is a IMDB clone that is a website that helps fans explore movies and their actors and director profiles
 to decide what to watch</h3>
 <br/>
+
 * User can create an account.
+
 * User can login to his/her account and edit his/her profile.
+
 * User can search for movies, actors, and directors by name, and open the
 profiles of the selected movies, actors, and directors to check their latest
 work.
+
 * User can open movies’ profile and write comments.
+
 * User can like or dislike movies.
+
 * the user can add his favorite movies, actors, and directors.
 
 <br/>
