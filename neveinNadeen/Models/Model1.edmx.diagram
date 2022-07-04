@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="055ab951377e45dab1560f114f56a40f" Name="Diagram1">
+        <EntityTypeShape EntityType="IMDB_Model.ActorMovies" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.Actors" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.Comments" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.Directors" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.FavActors" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.FavDirectors" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.FavMovies" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.IMDb_User" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.Movies" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IMDB_Model.Rates" Width="1.5" PointX="11.25" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="IMDB_Model.FK__ActorMovie__A_Id__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__ActorMovie__M_Id__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavActor__A_Id__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__IMDb_User__FavAc__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__Comment__M_Id__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__Comment__U_Id__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavDirecto__D_ID__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__IMDb_User__FavDi__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__Movie__D_Id__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavActor__U_ID__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavDirecto__U_ID__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavMovie__M_Id__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__FavMovie__U_Id__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__IMDb_User__FavMo__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__Rate__U_Id__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="IMDB_Model.FK__Rate__M_Id__5CD6CB2B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

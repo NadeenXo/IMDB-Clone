@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IMDB_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActorMovies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="A_Id" Type="Int32" />
+    <Property Name="M_Id" Type="Int32" />
+    <NavigationProperty Name="Actors" Relationship="Self.FK__ActorMovie__A_Id__32E0915F" FromRole="ActorMovies" ToRole="Actors" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__ActorMovie__M_Id__33D4B598" FromRole="ActorMovies" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="Actors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ActorMovies" Relationship="Self.FK__ActorMovie__A_Id__32E0915F" FromRole="Actors" ToRole="ActorMovies" />
+    <NavigationProperty Name="FavActors" Relationship="Self.FK__FavActor__A_Id__3C69FB99" FromRole="Actors" ToRole="FavActors" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__IMDb_User__FavAc__46E78A0C" FromRole="Actors" ToRole="IMDb_User" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Conntent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="M_Id" Type="Int32" />
+    <Property Name="U_Id" Type="Int32" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__Comment__M_Id__2C3393D0" FromRole="Comments" ToRole="Movies" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__Comment__U_Id__276EDEB3" FromRole="Comments" ToRole="IMDb_User" />
+  </EntityType>
+  <EntityType Name="Directors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="FavDirectors" Relationship="Self.FK__FavDirecto__D_ID__3E52440B" FromRole="Directors" ToRole="FavDirectors" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__IMDb_User__FavDi__47DBAE45" FromRole="Directors" ToRole="IMDb_User" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__Movie__D_Id__403A8C7D" FromRole="Directors" ToRole="Movies" />
+  </EntityType>
+  <EntityType Name="FavActors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="U_ID" Type="Int32" />
+    <Property Name="A_Id" Type="Int32" />
+    <NavigationProperty Name="Actors" Relationship="Self.FK__FavActor__A_Id__3C69FB99" FromRole="FavActors" ToRole="Actors" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__FavActor__U_ID__44FF419A" FromRole="FavActors" ToRole="IMDb_User" />
+  </EntityType>
+  <EntityType Name="FavDirectors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="U_ID" Type="Int32" />
+    <Property Name="D_ID" Type="Int32" />
+    <NavigationProperty Name="Directors" Relationship="Self.FK__FavDirecto__D_ID__3E52440B" FromRole="FavDirectors" ToRole="Directors" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__FavDirecto__U_ID__3F466844" FromRole="FavDirectors" ToRole="IMDb_User" />
+  </EntityType>
+  <EntityType Name="FavMovies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="U_Id" Type="Int32" />
+    <Property Name="M_Id" Type="Int32" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__FavMovie__M_Id__3A81B327" FromRole="FavMovies" ToRole="Movies" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__FavMovie__U_Id__3B75D760" FromRole="FavMovies" ToRole="IMDb_User" />
+  </EntityType>
+  <EntityType Name="IMDb_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FavMovie" Type="Int32" />
+    <Property Name="FavActor" Type="Int32" />
+    <Property Name="FavDirector" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Actors" Relationship="Self.FK__IMDb_User__FavAc__46E78A0C" FromRole="IMDb_User" ToRole="Actors" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__U_Id__276EDEB3" FromRole="IMDb_User" ToRole="Comments" />
+    <NavigationProperty Name="Directors" Relationship="Self.FK__IMDb_User__FavDi__47DBAE45" FromRole="IMDb_User" ToRole="Directors" />
+    <NavigationProperty Name="FavActors" Relationship="Self.FK__FavActor__U_ID__44FF419A" FromRole="IMDb_User" ToRole="FavActors" />
+    <NavigationProperty Name="FavDirectors" Relationship="Self.FK__FavDirecto__U_ID__3F466844" FromRole="IMDb_User" ToRole="FavDirectors" />
+    <NavigationProperty Name="FavMovies" Relationship="Self.FK__FavMovie__U_Id__3B75D760" FromRole="IMDb_User" ToRole="FavMovies" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__IMDb_User__FavMo__45F365D3" FromRole="IMDb_User" ToRole="Movies" />
+    <NavigationProperty Name="Rates" Relationship="Self.FK__Rate__U_Id__5DCAEF64" FromRole="IMDb_User" ToRole="Rates" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImgURL" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="D_Id" Type="Int32" />
+    <Property Name="likes" Type="Int32" />
+    <Property Name="Dislikes" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ActorMovies" Relationship="Self.FK__ActorMovie__M_Id__33D4B598" FromRole="Movies" ToRole="ActorMovies" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comment__M_Id__2C3393D0" FromRole="Movies" ToRole="Comments" />
+    <NavigationProperty Name="Directors" Relationship="Self.FK__Movie__D_Id__403A8C7D" FromRole="Movies" ToRole="Directors" />
+    <NavigationProperty Name="FavMovies" Relationship="Self.FK__FavMovie__M_Id__3A81B327" FromRole="Movies" ToRole="FavMovies" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__IMDb_User__FavMo__45F365D3" FromRole="Movies" ToRole="IMDb_User" />
+    <NavigationProperty Name="Rates" Relationship="Self.FK__Rate__M_Id__5CD6CB2B" FromRole="Movies" ToRole="Rates" />
+  </EntityType>
+  <EntityType Name="Rates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="M_Id" Type="Int32" />
+    <Property Name="U_Id" Type="Int32" />
+    <Property Name="Like" Type="Int32" />
+    <Property Name="DisLike" Type="Int32" />
+    <NavigationProperty Name="IMDb_User" Relationship="Self.FK__Rate__U_Id__5DCAEF64" FromRole="Rates" ToRole="IMDb_User" />
+    <NavigationProperty Name="Movies" Relationship="Self.FK__Rate__M_Id__5CD6CB2B" FromRole="Rates" ToRole="Movies" />
+  </EntityType>
+  <Association Name="FK__ActorMovie__A_Id__32E0915F">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="0..1" />
+    <End Role="ActorMovies" Type="Self.ActorMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActorMovies">
+        <PropertyRef Name="A_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ActorMovie__M_Id__33D4B598">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+    <End Role="ActorMovies" Type="Self.ActorMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActorMovies">
+        <PropertyRef Name="M_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavActor__A_Id__3C69FB99">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="0..1" />
+    <End Role="FavActors" Type="Self.FavActors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavActors">
+        <PropertyRef Name="A_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IMDb_User__FavAc__46E78A0C">
+    <End Role="Actors" Type="Self.Actors" Multiplicity="0..1" />
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IMDb_User">
+        <PropertyRef Name="FavActor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__M_Id__2C3393D0">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="M_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__U_Id__276EDEB3">
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMDb_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="U_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavDirecto__D_ID__3E52440B">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="0..1" />
+    <End Role="FavDirectors" Type="Self.FavDirectors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavDirectors">
+        <PropertyRef Name="D_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IMDb_User__FavDi__47DBAE45">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="0..1" />
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IMDb_User">
+        <PropertyRef Name="FavDirector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Movie__D_Id__403A8C7D">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="0..1" />
+    <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="D_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavActor__U_ID__44FF419A">
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="0..1" />
+    <End Role="FavActors" Type="Self.FavActors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMDb_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavActors">
+        <PropertyRef Name="U_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavDirecto__U_ID__3F466844">
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="0..1" />
+    <End Role="FavDirectors" Type="Self.FavDirectors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMDb_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavDirectors">
+        <PropertyRef Name="U_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavMovie__M_Id__3A81B327">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+    <End Role="FavMovies" Type="Self.FavMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavMovies">
+        <PropertyRef Name="M_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FavMovie__U_Id__3B75D760">
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="0..1" />
+    <End Role="FavMovies" Type="Self.FavMovies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMDb_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FavMovies">
+        <PropertyRef Name="U_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__IMDb_User__FavMo__45F365D3">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IMDb_User">
+        <PropertyRef Name="FavMovie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rate__U_Id__5DCAEF64">
+    <End Role="IMDb_User" Type="Self.IMDb_User" Multiplicity="0..1" />
+    <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMDb_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rates">
+        <PropertyRef Name="U_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rate__M_Id__5CD6CB2B">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+    <End Role="Rates" Type="Self.Rates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rates">
+        <PropertyRef Name="M_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IMDb_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActorMovies" EntityType="Self.ActorMovies" />
+    <EntitySet Name="Actors" EntityType="Self.Actors" />
+    <EntitySet Name="Comments" EntityType="Self.Comments" />
+    <EntitySet Name="Directors" EntityType="Self.Directors" />
+    <EntitySet Name="FavActors" EntityType="Self.FavActors" />
+    <EntitySet Name="FavDirectors" EntityType="Self.FavDirectors" />
+    <EntitySet Name="FavMovies" EntityType="Self.FavMovies" />
+    <EntitySet Name="IMDb_User" EntityType="Self.IMDb_User" />
+    <EntitySet Name="Movies" EntityType="Self.Movies" />
+    <EntitySet Name="Rates" EntityType="Self.Rates" />
+    <AssociationSet Name="FK__ActorMovie__A_Id__32E0915F" Association="Self.FK__ActorMovie__A_Id__32E0915F">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="ActorMovies" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ActorMovie__M_Id__33D4B598" Association="Self.FK__ActorMovie__M_Id__33D4B598">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="ActorMovies" EntitySet="ActorMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavActor__A_Id__3C69FB99" Association="Self.FK__FavActor__A_Id__3C69FB99">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="FavActors" EntitySet="FavActors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IMDb_User__FavAc__46E78A0C" Association="Self.FK__IMDb_User__FavAc__46E78A0C">
+      <End Role="Actors" EntitySet="Actors" />
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__M_Id__2C3393D0" Association="Self.FK__Comment__M_Id__2C3393D0">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comment__U_Id__276EDEB3" Association="Self.FK__Comment__U_Id__276EDEB3">
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavDirecto__D_ID__3E52440B" Association="Self.FK__FavDirecto__D_ID__3E52440B">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="FavDirectors" EntitySet="FavDirectors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IMDb_User__FavDi__47DBAE45" Association="Self.FK__IMDb_User__FavDi__47DBAE45">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Movie__D_Id__403A8C7D" Association="Self.FK__Movie__D_Id__403A8C7D">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavActor__U_ID__44FF419A" Association="Self.FK__FavActor__U_ID__44FF419A">
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+      <End Role="FavActors" EntitySet="FavActors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavDirecto__U_ID__3F466844" Association="Self.FK__FavDirecto__U_ID__3F466844">
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+      <End Role="FavDirectors" EntitySet="FavDirectors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavMovie__M_Id__3A81B327" Association="Self.FK__FavMovie__M_Id__3A81B327">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="FavMovies" EntitySet="FavMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FavMovie__U_Id__3B75D760" Association="Self.FK__FavMovie__U_Id__3B75D760">
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+      <End Role="FavMovies" EntitySet="FavMovies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__IMDb_User__FavMo__45F365D3" Association="Self.FK__IMDb_User__FavMo__45F365D3">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rate__U_Id__5DCAEF64" Association="Self.FK__Rate__U_Id__5DCAEF64">
+      <End Role="IMDb_User" EntitySet="IMDb_User" />
+      <End Role="Rates" EntitySet="Rates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rate__M_Id__5CD6CB2B" Association="Self.FK__Rate__M_Id__5CD6CB2B">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="Rates" EntitySet="Rates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
